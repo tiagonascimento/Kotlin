@@ -3,23 +3,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/all_Task">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.tiagorocha.tasks.view.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/all_Task"
+        android:name="com.tiagorocha.tasks.view.AllTasksFragment"
+        android:label="@string/all_tasks"
+        tools:layout="@layout/fragment_all_tasks" >
+        <argument
+            android:name="taskfilter"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.tiagorocha.tasks.view.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_next_tasks"
+        android:name="com.tiagorocha.tasks.view.AllTasksFragment"
+        android:label="@string/proximos_7_dias"
+        tools:layout="@layout/fragment_all_tasks" >
+        <argument
+            android:name="taskfilter"
+            app:argType="integer"
+            android:defaultValue="1" />
+    </fragment>
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.tiagorocha.tasks.view.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_expired"
+        android:name="com.tiagorocha.tasks.view.AllTasksFragment"
+        android:label="@string/expiradas"
+        tools:layout="@layout/fragment_all_tasks" >
+        <argument
+            android:name="taskfilter"
+            app:argType="integer"
+            android:defaultValue="2" />
+    </fragment>
 </navigation>

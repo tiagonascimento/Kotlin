@@ -12,7 +12,7 @@ class SecurityPreferences(context: Context) {
     }
 
     fun remove(key: String) {
-        _preferences.edit().remove(key)
+        _preferences.edit().remove(key).apply()
     }
 
     fun get(key: String): String {

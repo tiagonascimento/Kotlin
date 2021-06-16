@@ -1,4 +1,4 @@
-package com.tiagorocha.tasks.service
+package com.tiagorocha.tasks.service.model
 
 import com.google.gson.annotations.SerializedName
 
