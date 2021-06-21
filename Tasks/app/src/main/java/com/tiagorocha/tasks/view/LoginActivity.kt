@@ -5,10 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import androidx.activity.viewModels
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.tiagorocha.tasks.R
 import com.tiagorocha.tasks.viewmodel.LoginViewModel
+import java.util.concurrent.Executor
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var _viewModel: LoginViewModel
@@ -20,18 +24,20 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-
         _btnLogin = findViewById(R.id.button_login)
         _editEmail = findViewById(R.id.edit_email)
         _editPassword = findViewById(R.id.edit_password)
         _viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
         _register = findViewById(R.id.text_register)
+
+
         setListener()
         observer()
 
+
+       // _viewModel.isAuthenticationAvaliable()
         //verifica login do user
-        verifyLoggedUser()
+       verifyLoggedUser()
     }
 
     override fun onClick(v: View) {
@@ -41,6 +47,31 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             startActivity(Intent(this, FormUserActivity::class.java))
         }
     }
+    private fun showAutentication(){
+        //executor
+        val executor : Executor = ContextCompat.getMainExecutor(this)
+
+        //BiometricPrompt
+        val biometricPrompt = BiometricPrompt(this@LoginActivity, executor,
+            object : BiometricPrompt.AuthenticationCallback(){
+                override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                    super.onAuthenticationSucceeded(result)
+                    startActivity(Intent(applicationContext, MainActivity::class.java))
+                    finish()
+                }
+        })
+
+        //BiometricPrompt info
+        val biometricPromptInfo = BiometricPrompt.PromptInfo.Builder()
+            .setTitle("Titulo")
+            .setSubtitle("Subtitulo")
+            .setDescription("Descrição")
+            .setNegativeButtonText("Cancelar")
+            .build()
+
+        biometricPrompt.authenticate(biometricPromptInfo)
+
+    }
 
     fun setListener() {
         _btnLogin.setOnClickListener(this)
@@ -48,9 +79,14 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
     fun observer() {
         //verificar se o usuário esta logado
+        _viewModel.fingerPrint.observe(this, Observer{
+            if(it){
+                showAutentication()
+            }
+        })
         _viewModel.loogedUser.observe(this, Observer{
             if(it){
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(applicationContext, MainActivity::class.java))
                 finish()
             }
         })
@@ -64,10 +100,12 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             }
         })
     }
-    fun verifyLoggedUser() {
-        _viewModel.verifyLoggedUser()
+    /**
+     * Verifica se usuário está logado
+     */
+    private fun verifyLoggedUser() {
+        _viewModel.isAuthenticationAvaliable()
     }
-
     /**
      * Autentica usuário
      */

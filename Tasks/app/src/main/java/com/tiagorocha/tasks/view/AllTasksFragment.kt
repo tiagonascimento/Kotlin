@@ -38,6 +38,8 @@ class AllTasksFragment : Fragment() {
         recycler.layoutManager = LinearLayoutManager(context)
         recycler.adapter = _adapter
         _TaskFilder =  requireArguments().getInt(TaskConstants.BUNDLE.TASKFILTER,0)
+
+
         //eventos
         _listener = object: TaskListener{
             override fun onListClick(id: Int) {
@@ -65,7 +67,7 @@ class AllTasksFragment : Fragment() {
     override fun onResume() {
         super.onResume()
        _adapter.attachListener(_listener)
-        viewModel.list(_TaskFilder)
+       viewModel.list(_TaskFilder)
     }
     private fun observer(){
         viewModel.tasks.observe(viewLifecycleOwner, Observer {

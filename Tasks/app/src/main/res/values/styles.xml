@@ -13,9 +13,8 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">false</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
-    
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
@@ -31,9 +30,10 @@
         <item name="android:textColor">#ffffff</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:paddingLeft">70dp</item>
-
+        <item name="android:background">@drawable/shape_button</item>
         <item name="android:paddingRight">70dp</item>
         <item name="android:layout_gravity">center</item>
+        <item name="android:tint">@color/colorAccent</item>
     </style>
 
     <style name="ViewElementsDivider">
@@ -42,12 +42,6 @@
         <item name="android:background">#ececec</item>
     </style>
 
-    <string name="DefaultButton" >
-        <item name="android:background">@drawable/shape_button</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:paddingStart">64dp</item>
-        <item name="android:paddingEnd">64dp</item>
-        <item name="app:backgroundTint">@null</item>
-    </string>
+
+
 </resources>

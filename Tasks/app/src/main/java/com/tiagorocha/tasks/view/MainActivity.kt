@@ -2,8 +2,6 @@ package com.tiagorocha.tasks.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Gravity
-import android.view.Menu
 import android.widget.TextView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
@@ -16,7 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.ui.*
 import com.tiagorocha.tasks.R
-import com.tiagorocha.tasks.viewmodel.LoginViewModel
+
 import com.tiagorocha.tasks.viewmodel.MainActivityViewModel
 
 class MainActivity : AppCompatActivity() {

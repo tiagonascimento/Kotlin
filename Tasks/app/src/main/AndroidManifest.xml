@@ -13,10 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tasks"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.TaskFormActivity"></activity>
+        <activity android:name=".view.TaskFormActivity"/>
         <activity android:name=".view.FormUserActivity" />
         <activity android:name=".view.LoginActivity"
-                   android:theme="@style/Theme.Tasks.NoActionBar" >
+                   android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
